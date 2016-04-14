@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -128,14 +130,16 @@ public class SearchFragment extends AppCompatActivity implements NavigationView.
         newRequest.DbRetrieveDetails(Type, newSearchParam, new CallBackInter() {
             @Override
             public void complete(storeDbresults newObject) {
-
+                ArrayList<SearchPeramiters> allResults = new ArrayList<>();
                 storeDbresults searchPerams = newObject;
+                allResults = searchPerams.getMultiResult();
                 //check if correct
-                if (searchPerams == null/*userLogin.checkEmpty() == true*/) {
+                if (allResults == null/*userLogin.checkEmpty() == true*/) {
                     Log.d(null, "something has gone wrong");
                     //Warninglbl.setText("user details were incorrect");
                 } else {
-                    Log.d("testing object", searchPerams.getCollegeDetails().CollegeName);
+                    SearchPeramiters temp = allResults.get(0);
+                    Log.d("testing object", temp.getCollegeName());
 
                 }
             }
