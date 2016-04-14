@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/Info"
-        android:id="@+id/textView22"
+        android:id="@+id/collegeNameLabel"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
@@ -47,29 +47,153 @@
         android:layout_alignParentStart="true"
         android:onClick="onClick" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dirction"
-        android:id="@+id/button4"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ratings_comments_btn"
+                android:id="@+id/ratingsBtn"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView2"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/display_map_btn"
-        android:textColor="#fafaf9"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Name:"
+                android:id="@+id/colNameLbl"
+                android:layout_below="@+id/collegeNameLabel"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
 
-        android:background="#ffffff"
-        android:layout_below="@+id/textView22"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Address:"
+                android:id="@+id/colAddressLbl"
+                android:layout_below="@+id/colNameLbl"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Email:"
+                android:id="@+id/colEmailLbl"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Phone No:"
+                android:id="@+id/colPhoneLbl"
+                android:layout_below="@+id/colEmailLbl"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Course Type:"
+                android:id="@+id/colCourseTypeLbl"
+                android:layout_below="@+id/colPhoneLbl"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/textView27"
+                android:layout_below="@+id/colCourseTypeLbl"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/displayColNameTxt"
+                android:layout_alignBottom="@+id/colNameLbl"
+                android:layout_centerHorizontal="true"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/displayColAddressTxt"
+                android:layout_alignBottom="@+id/colAddressLbl"
+                android:layout_alignStart="@+id/collegeNameLabel"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/displayColEmailTxt"
+                android:layout_alignBottom="@+id/colEmailLbl"
+                android:layout_alignStart="@+id/displayColAddressTxt"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/displayColPhoneTxt"
+                android:layout_alignBottom="@+id/colPhoneLbl"
+                android:layout_alignStart="@+id/displayColEmailTxt"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/displayColCoursesTxt"
+                android:layout_alignBottom="@+id/colCourseTypeLbl"
+                android:layout_alignStart="@+id/displayColPhoneTxt"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/textView33"
+                android:layout_alignBottom="@+id/textView27"
+                android:layout_alignStart="@+id/displayColCoursesTxt"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff" />
 
 
-</RelativeLayout>
+        </RelativeLayout>
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
