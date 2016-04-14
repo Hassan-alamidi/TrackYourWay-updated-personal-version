@@ -11,8 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 public class College_Info_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    Button ratingsBtn,displayMapBtn;
 
     //creating objects for navigation drawer
     DrawerLayout mdrawer;
@@ -27,6 +30,25 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
         setContentView(R.layout.activity_college__info_);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ratingsBtn = (Button)findViewById(R.id.ratingsBtn);
+        displayMapBtn = (Button)findViewById(R.id.display_map_btn);
+
+        ratingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i;
+                i = new Intent(getApplicationContext(),Comments_Rating_Activity.class);
+                startActivity(i);
+            }});
+
+        displayMapBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Intent i;
+                i = new Intent(getApplicationContext(),MapsActivity.class);
+                startActivity(i);
+            }});
+
 
 
         //hamburger icon to open navigation drawer
@@ -41,15 +63,7 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
         mNavigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void onClick(View v){
-        switch(v.getId()){
-            case R.id.display_map_btn:
-                Intent i = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(i);
-                break;
-        }
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
