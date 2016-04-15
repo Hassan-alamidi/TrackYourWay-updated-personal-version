@@ -4,7 +4,7 @@ package randomcompany.trackyourway;
  * Created by Hassan on 07/04/2016.
  */
 public class SearchPeramiters {
-
+    //reminder this was not ment for storing details this is for
     String collegeName, collegeLocation, courseName, courseType, keyWords;
     public SearchPeramiters(){
         collegeName = null;

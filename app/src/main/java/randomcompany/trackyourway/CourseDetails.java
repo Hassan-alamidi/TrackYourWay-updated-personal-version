@@ -6,6 +6,11 @@ package randomcompany.trackyourway;
 public class CourseDetails extends CollegeDetails{
     String courseName, description, type;
     int level, duration , courseID, collegeID;
+
+    public CourseDetails(){
+
+    }
+
     public CourseDetails(int newCourseID,int newCollegeID, String newCourseName, String newDescription, int newLevel, String newType, int newDuration){
         courseID = newCourseID;
         collegeID = newCollegeID;

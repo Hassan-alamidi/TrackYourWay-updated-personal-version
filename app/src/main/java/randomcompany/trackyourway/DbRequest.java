@@ -21,6 +21,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -69,6 +70,8 @@ public class DbRequest{
         UserAccount User;
         CallBackInter callBack;
         Events newEvents;
+        CollegeDetails newCollege;
+        CourseDetails newCourse;
         storeDbresults param = new storeDbresults();
         public DBServerRequest(storeDbresults newParam, CallBackInter newCallBack, String PageType){
             Type = PageType;
@@ -79,6 +82,8 @@ public class DbRequest{
             //dont know why im getting college events here
             newEvents = newParam.getCollegeEvents();
             callBack = newCallBack;
+            newCollege = new CollegeDetails();
+            newCourse = new CourseDetails();
         }
 
         @Override
@@ -184,6 +189,7 @@ public class DbRequest{
                 }else if(Type.equals("Events") || Type.equals("Search")){
                     //convert string into a jsonObject to allow data to be pulled from string without splitting or getting one char at a time
                     JSONArray jResponse = new JSONArray(response);
+                    int j = 0;
                     //check the length to make sure data exists
                     Log.d("H length", Integer.toString((jResponse.length())));
                     if (jResponse.length() == 0) {
@@ -194,7 +200,8 @@ public class DbRequest{
                         for(int i = 0; i < jResponse.length(); i++){
                            //convert what ever is in json object to a string
                             String results =  jResponse.getString(i);
-                            String[] singleQuery = new String[7];
+                            //if needed the max array size should be 15
+                            String[] singleQuery;
                             //j is used to count how many times the below loop needs to go before int needs to stop
 //                            int j = 0;
 //                            for (String result: results.split("\\|")) {
@@ -208,8 +215,55 @@ public class DbRequest{
                             //if this isnt working comment this out and re-enable the loop
                             singleQuery = results.split("\\|");
                             System.out.println("first val" + singleQuery[0]);
-                            newEvents = new Events(singleQuery[0], singleQuery[1], singleQuery[2], singleQuery[3], singleQuery[4], Double.parseDouble(singleQuery[5]), Double.parseDouble(singleQuery[6]));
-                            multiResult.add(newEvents);
+                            if(Type.equals("Events")) {
+                                newEvents = new Events(singleQuery[0], singleQuery[1], singleQuery[2], singleQuery[3], singleQuery[4], Double.parseDouble(singleQuery[5]), Double.parseDouble(singleQuery[6]));
+                                multiResult.add(newEvents);
+                            }else{
+                                //0 course id, 1 college id,2 latitude,3 longitude,4 collegetype, 5 collegename,6 collegeaddress,7 collegeemail,8 collegecontact,9 coursename,10 coursetype,11 coursedescription,12 courseyear,13 courselevel,14 collegerating
+                                if(j==0) {
+
+                                    newCourse = new CourseDetails(Integer.parseInt(singleQuery[0]), Integer.parseInt(singleQuery[1]), singleQuery[9], singleQuery[11], Integer.parseInt(singleQuery[13]), singleQuery[10], Integer.parseInt(singleQuery[13]));
+                                    newCollege = new CollegeDetails(Integer.parseInt(singleQuery[1]), singleQuery[5], singleQuery[6], singleQuery[7], singleQuery[8], Double.parseDouble(singleQuery[3]), Double.parseDouble(singleQuery[2]), Float.parseFloat(singleQuery[14]));
+                                    newCollege.addCourse(newCourse);
+                                    multiResult.add(newCollege);
+                                    j++;
+                                }else{
+                                    newCourse = new CourseDetails(Integer.parseInt(singleQuery[0]), Integer.parseInt(singleQuery[1]), singleQuery[9], singleQuery[11], Integer.parseInt(singleQuery[13]), singleQuery[10], Integer.parseInt(singleQuery[13]));
+                                    newCollege = new CollegeDetails(Integer.parseInt(singleQuery[1]), singleQuery[5], singleQuery[6], singleQuery[7], singleQuery[8], Double.parseDouble(singleQuery[3]), Double.parseDouble(singleQuery[2]), Float.parseFloat(singleQuery[14]));
+
+                                    //create a iterator from multiResult
+                                    Iterator IT = multiResult.iterator();
+                                    //create an int to be used as an index
+                                    int k = 0;
+                                    //iterate through the iterator
+                                    while (IT.hasNext()){
+                                        CollegeDetails tempCollege = (CollegeDetails) IT.next();
+                                        if(tempCollege.CollegeID == newCollege.CollegeID){
+                                            if(newCourse.courseName != null) {
+                                                tempCollege.addCourse(newCourse);
+                                                multiResult.remove(k);
+                                                multiResult.add(tempCollege);
+                                            }else if(tempCollege.CheckCourseExsistance(newCourse.courseID)){
+                                                //if college stored in array equals course college id then just add course to college dont add college
+                                                //if course does not exist then
+                                            }
+                                        }else{
+
+                                        }
+                                        k++;
+                                    }
+                                    //check if college or course exists if not store in arraylist
+                                    //solution 1 store course and college in two separate arraylists then when needed compare college id's in both when calling a course
+                                    //pros are we can remove duplicate colleges or courses, code not as nice.
+                                    //solution 2 store course and colleges in one arraylist then when needed you can get each college by every second iteration though the index and the related course will be before it
+                                    //pros code maybe cleaner, cons there will be duplicates and there maybe issues if a college is selected with no course.
+                                    //solution 3 store course objects in colleges and store colleges in arraylist, you can access each course contained within the college with no need to reference the college id's
+                                    //cons my be hard to implement
+                                }
+                                //should be linked up to use college and course details
+                                //newEvents = new Events(singleQuery[0], singleQuery[1], singleQuery[2], singleQuery[3], singleQuery[4], Double.parseDouble(singleQuery[5]), Double.parseDouble(singleQuery[6]));
+                                //multiResult.add(newEvents);
+                            }
                         }
 
 
