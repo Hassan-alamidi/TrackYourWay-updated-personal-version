@@ -2,6 +2,7 @@ package randomcompany.trackyourway;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userName,password;
     private TextView Warninglbl;
     LocalUserDetails details;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,11 @@ public class LoginActivity extends AppCompatActivity {
                 //check if user has entered username and password
                 if (userName.getText().toString().equals("") && userName.getText().toString().equals(null)) {
                     Warninglbl.setText("please enter your username");
+                    /*Snackbar.make(v, "Please Enter Valid Username", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();*/
                 }else if(password.getText().toString().equals("") && password.getText().toString().equals(null)){
+                    /*Snackbar.make(v, "Please Enter Correct Password", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();*/
                     Warninglbl.setText("please enter your Password");
                 }else{
                     //get details from textbox
@@ -76,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void CheckDetails(storeDbresults newUserLogin){
+
         //send data to database request
         String Type = "Login";
         DbRequest newRequest = new DbRequest(this);
@@ -90,6 +97,14 @@ public class LoginActivity extends AppCompatActivity {
                 //check if correct
                 if(userLogin == null/*userLogin.checkEmpty() == true*/){
                     Log.d(null,"something has gone wrong");
+                    /*View snackView = (View)findViewById(R.id.loginBtn);
+                    snackView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Snackbar.make(view, "Incorrect details", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                    });*/
                     Warninglbl.setText("user details were incorrect");
                 }else{
                     Log.d("testing object", userLogin.UserName);
