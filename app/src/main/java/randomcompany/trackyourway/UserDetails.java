@@ -13,11 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,11 +155,9 @@ public class UserDetails extends AppCompatActivity implements NavigationView.OnN
             super(UserDetails.this, R.layout.list_item, user);
 
         }
+        
 
 
-<<<<<<< HEAD
-
-=======
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             //Make sure our view works may have passed null
@@ -169,7 +165,6 @@ public class UserDetails extends AppCompatActivity implements NavigationView.OnN
             if(itemView == null){
                 itemView = getLayoutInflater().inflate(R.layout.list_item, parent, false);
             }
->>>>>>> ffb7a053a80f13b7ac862ce2b218787412f960c8
 
 
             User currentUser = user.get(position);
