@@ -124,7 +124,7 @@ public class MainHub_Activity extends AppCompatActivity implements NavigationVie
 
             //handles the click even for the user etails activity
         } else if (id == R.id.nav_user_details) {
-            Intent intent = new Intent(this, MainHub_Activity.class);
+            Intent intent = new Intent(this, UserDetails.class);
             startActivity(intent);
             return true;
 
