@@ -30,12 +30,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Main Hub"
-        android:id="@+id/textView16"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:text="@string/mainHubLabel"
+        android:id="@+id/mainHubLabel"
         android:textColor="#e0dede"
-        android:layout_marginTop="65dp" />
+        android:layout_marginBottom="31dp"
+        android:background="#6b6b6b"
+        android:layout_above="@+id/newSearchBtn"
+        android:layout_alignStart="@+id/newSearchBtn" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -43,20 +44,20 @@
         android:id="@+id/savedSearchBtn"
         android:background="@drawable/mycollegesmage1"
         android:clickable="true"
-        android:layout_marginTop="19dp"
-        android:layout_below="@+id/textView18"
+        android:layout_above="@+id/savedSearchesLabel"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Saved Searches"
-        android:id="@+id/textView17"
+        android:text="@string/savedSearchLabel"
+        android:id="@+id/savedSearchesLabel"
         android:textColor="#eeecec"
-        android:layout_below="@+id/savedSearchBtn"
+        android:background="#6b6b6b"
+        android:layout_above="@+id/forum_btn"
         android:layout_centerHorizontal="true"
-        android:background="#6b6b6b" />
+        android:layout_marginBottom="16dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -64,48 +65,45 @@
         android:id="@+id/newSearchBtn"
         android:background="@drawable/search3"
         android:clickable="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView16"
-        android:layout_alignEnd="@+id/textView16" />
+        android:layout_above="@+id/newSearchLabel"
+        android:layout_alignStart="@+id/newSearchLabel" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="New Search"
-        android:id="@+id/textView18"
+        android:text="@string/newSearchLabel"
+        android:id="@+id/newSearchLabel"
         android:textColor="#e8e7e7"
-
-
-        android:layout_below="@+id/newSearchBtn"
+        android:background="#6b6b6b"
+        android:layout_above="@+id/savedSearchBtn"
         android:layout_alignStart="@+id/savedSearchBtn"
-        android:background="#6b6b6b" />
+        android:layout_marginBottom="18dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:id="@+id/forum_btn"
-
         android:background="@drawable/calendar"
         android:clickable="true"
-        android:layout_above="@+id/textView19"
+        android:layout_above="@+id/eventsCalendarLabel"
+        android:layout_alignStart="@+id/newSearchBtn"
         android:layout_alignEnd="@+id/savedSearchBtn" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Forum/Rate"
-        android:id="@+id/textView19"
+        android:text="@string/eventsCalendarLabel"
+        android:id="@+id/eventsCalendarLabel"
         android:textColor="#f9f9f9"
+        android:background="#6b6b6b"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#6b6b6b" />
+        android:layout_alignStart="@+id/savedSearchesLabel" />
 </RelativeLayout>
 
        <!--<android.support.design.widget.NavigationView-->
-        <android.support.design.widget.NavigationView
+       <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

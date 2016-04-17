@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userName,password;
     private TextView Warninglbl;
     LocalUserDetails details;
+    private RelativeLayout loginLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.userNameTxt);
         password = (EditText) findViewById(R.id.passwordTxt);
         Warninglbl = (TextView) findViewById(R.id.Warninglbl);
+        loginLayout = (RelativeLayout)findViewById(R.id.loginLayout);
         details = new LocalUserDetails(this);
         //move outside of oncreate when it is working
 
@@ -52,14 +55,30 @@ public class LoginActivity extends AppCompatActivity {
             //user login
             case R.id.loginBtn:
                 //check if user has entered username and password
-                if (userName.getText().toString().equals("") && userName.getText().toString().equals(null)) {
-                    Warninglbl.setText("please enter your username");
-                    /*Snackbar.make(v, "Please Enter Valid Username", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();*/
-                }else if(password.getText().toString().equals("") && password.getText().toString().equals(null)){
-                    /*Snackbar.make(v, "Please Enter Correct Password", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();*/
-                    Warninglbl.setText("please enter your Password");
+                if (userName.getText().toString().trim().equals("") && userName.getText().toString().trim().equals(null)||password.getText().toString().equals("") && password.getText().toString().equals(null)) {
+                    //Warninglbl.setText("please enter your username");
+                    //this is a reminder to myself
+                    //Think i found solution to snackbar issue will create relative layout variable
+                    //also 1 if else my work userName.getText().toString().trim().equals("") && userName.getText().toString().trim().equals("")) & remove if else
+                    Snackbar.make(loginLayout, "Please Enter Valid Username", Snackbar.LENGTH_LONG)
+                            .setAction("Dismiss", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            }).show();
+
+                    //note to self :commented out else if statement going to test snackbar needs putting back to vlidate password
+
+                /*}else if(password.getText().toString().equals("") && password.getText().toString().equals(null)){
+                    Snackbar.make(loginLayout, "Please Enter Correct Password", Snackbar.LENGTH_LONG)
+                            .setAction("Dismiss", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            }).show();
+                    //Warninglbl.setText("please enter your Password");*/
                 }else{
                     //get details from textbox
                     String lUserName = userName.getText().toString();
@@ -97,15 +116,15 @@ public class LoginActivity extends AppCompatActivity {
                 //check if correct
                 if(userLogin == null/*userLogin.checkEmpty() == true*/){
                     Log.d(null,"something has gone wrong");
-                    /*View snackView = (View)findViewById(R.id.loginBtn);
-                    snackView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Snackbar.make(view, "Incorrect details", Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
-                        }
-                    });*/
-                    Warninglbl.setText("user details were incorrect");
+                    Snackbar.make(loginLayout, "User details incorrect/Check Wifi Connection", Snackbar.LENGTH_LONG)
+                            .setAction("Dismiss", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            })
+                            .show();
+                    //Warninglbl.setText("user details were incorrect");
                 }else{
                     Log.d("testing object", userLogin.UserName);
                     //store details locally

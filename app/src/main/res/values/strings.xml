@@ -126,4 +126,8 @@
     <string name="dirction">Get Directions</string>
     <string name="displaying">Displaying Results For:</string>
     <string name="ratings_comments_btn"><![CDATA[View/Add Ratings]]></string>
+    <string name="newSearchLabel">New Search</string>
+    <string name="savedSearchLabel">Saved Searches</string>
+    <string name="eventsCalendarLabel">Events Calendar</string>
+    <string name="mainHubLabel">Main Hub</string>
 </resources>
