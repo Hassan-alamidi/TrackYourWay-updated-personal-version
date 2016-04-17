@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
+        //sleep(100);
         //this is a test if this works remove the if authenticate and others related
         if(details.userDetails.getBoolean("isLoggedIn",false)== true){
             getUserDetails();

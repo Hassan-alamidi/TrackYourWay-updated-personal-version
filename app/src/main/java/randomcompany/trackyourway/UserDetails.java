@@ -155,7 +155,7 @@ public class UserDetails extends AppCompatActivity implements NavigationView.OnN
             super(UserDetails.this, R.layout.list_item, user);
 
         }
-        
+
 
 
         @Override

@@ -68,7 +68,7 @@ public class SearchFragment extends AppCompatActivity implements NavigationView.
 
         SearchBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SearchPeramiters search = new SearchPeramiters();
+                //SearchPeramiters search = new SearchPeramiters();
                 storeDbresults storeParam = new storeDbresults();
                 CollegeName = instituteTf.getText().toString();
                 CourseName = courseTf.getText().toString();
@@ -130,17 +130,20 @@ public class SearchFragment extends AppCompatActivity implements NavigationView.
         newRequest.DbRetrieveDetails(Type, newSearchParam, new CallBackInter() {
             @Override
             public void complete(storeDbresults newObject) {
-                ArrayList<SearchPeramiters> allResults = new ArrayList<>();
+                ArrayList<CollegeDetails> allResults = new ArrayList<>();
                 storeDbresults searchPerams = newObject;
                 allResults = searchPerams.getMultiResult();
                 //check if correct
-                if (allResults == null/*userLogin.checkEmpty() == true*/) {
+                if (allResults.size()<=0/*userLogin.checkEmpty() == true*/) {
                     Log.d(null, "something has gone wrong");
                     //Warninglbl.setText("user details were incorrect");
                 } else {
-                    SearchPeramiters temp = allResults.get(0);
-                    Log.d("testing object", temp.getCollegeName());
 
+                    CollegeDetails temp = allResults.get(0);
+                    Log.d("testing object", temp.CollegeName);
+                    Intent i;
+                    i = new Intent(getApplicationContext(), Results_Activity.class);
+                    startActivity(i);
                 }
             }
         });

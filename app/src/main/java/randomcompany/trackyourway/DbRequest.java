@@ -34,6 +34,7 @@ public class DbRequest{
     private static final String RegistrationUrl = "https://trackyourway-sunny-shakya-1.c9users.io/Registration.php";//"http://10.0.2.2/Registration.php"; //this is for xampp
     private static final String SearchUrl = "https://trackyourway-sunny-shakya-1.c9users.io/getData.php";
     private static final String EventsUrl = "https://trackyourway-sunny-shakya-1.c9users.io/Calendar.php";// "http://10.0.2.2/Calendar.php"; //
+    private static final String RatingUrl = "https://trackyourway-sunny-shakya-1.c9users.io/getRatings.php";
 
     private HashMap<String,String> DBDetails = new HashMap<String,String>();
     public ArrayList<Object> multiResult = new ArrayList<>();
@@ -112,6 +113,9 @@ public class DbRequest{
                         break;
                     case "Events":
                         server = EventsUrl;
+                        break;
+                    case "Rating":
+                        server = RatingUrl;
                         break;
                     default:
                         Log.d("failed to check type", "check type variables are correct");
@@ -221,16 +225,17 @@ public class DbRequest{
                             }else{
                                 //0 course id, 1 college id,2 latitude,3 longitude,4 collegetype, 5 collegename,6 collegeaddress,7 collegeemail,8 collegecontact,9 coursename,10 coursetype,11 coursedescription,12 courseyear,13 courselevel,14 collegerating
                                 if(j==0) {
-
-                                    newCourse = new CourseDetails(Integer.parseInt(singleQuery[0]), Integer.parseInt(singleQuery[1]), singleQuery[9], singleQuery[11], Integer.parseInt(singleQuery[13]), singleQuery[10], Integer.parseInt(singleQuery[13]));
+                                    //$CollegeId ."|". $latitude ."|". $longitude ."|". $CollegeType ."|". $CollegeName ."|". $CollegeAddress ."|". $CollegeEmail ."|". $CollegeContact ."|". $CourseName ."|". $CourseType ."|". $CourseDescription ."|". $CourseYear ."|". $CourseLevel ."|". $CollegeRating
+                                                                                     //int newCourseID,int newCollegeID, String newCourseName, String newDescription, String newLevel, String newType, int newDuration
+                                    newCourse = new CourseDetails(Integer.parseInt(singleQuery[0]), Integer.parseInt(singleQuery[1]), singleQuery[9], singleQuery[11], singleQuery[13], singleQuery[10], Integer.parseInt(singleQuery[12]));
                                     newCollege = new CollegeDetails(Integer.parseInt(singleQuery[1]), singleQuery[5], singleQuery[6], singleQuery[7], singleQuery[8], Double.parseDouble(singleQuery[3]), Double.parseDouble(singleQuery[2]), Float.parseFloat(singleQuery[14]));
                                     newCollege.addCourse(newCourse);
                                     multiResult.add(newCollege);
                                     j++;
                                 }else{
-                                    newCourse = new CourseDetails(Integer.parseInt(singleQuery[0]), Integer.parseInt(singleQuery[1]), singleQuery[9], singleQuery[11], Integer.parseInt(singleQuery[13]), singleQuery[10], Integer.parseInt(singleQuery[13]));
+                                    newCourse = new CourseDetails(Integer.parseInt(singleQuery[0]), Integer.parseInt(singleQuery[1]), singleQuery[9], singleQuery[11], singleQuery[13], singleQuery[10], Integer.parseInt(singleQuery[12]));
                                     newCollege = new CollegeDetails(Integer.parseInt(singleQuery[1]), singleQuery[5], singleQuery[6], singleQuery[7], singleQuery[8], Double.parseDouble(singleQuery[3]), Double.parseDouble(singleQuery[2]), Float.parseFloat(singleQuery[14]));
-
+                                    boolean collegeFound = false;
                                     //create a iterator from multiResult
                                     Iterator IT = multiResult.iterator();
                                     //create an int to be used as an index
@@ -238,19 +243,31 @@ public class DbRequest{
                                     //iterate through the iterator
                                     while (IT.hasNext()){
                                         CollegeDetails tempCollege = (CollegeDetails) IT.next();
+                                        System.out.println("check iterator" + k + " " + collegeFound);
+                                        //check if college in already exists in array
                                         if(tempCollege.CollegeID == newCollege.CollegeID){
-                                            if(newCourse.courseName != null) {
+                                            //check if college exists then check if course exists in array
+                                            if(tempCollege.CheckCourseExsistance(newCourse.courseID)){
+                                                //course already exists in college so no need to add it
+                                                System.out.println("course already exists in array");
+                                            }else if(newCourse.courseName != null) {
+                                                //course is not in arraylist so add it
                                                 tempCollege.addCourse(newCourse);
                                                 multiResult.remove(k);
                                                 multiResult.add(tempCollege);
-                                            }else if(tempCollege.CheckCourseExsistance(newCourse.courseID)){
-                                                //if college stored in array equals course college id then just add course to college dont add college
-                                                //if course does not exist then
                                             }
-                                        }else{
-
+                                            collegeFound = true;
                                         }
                                         k++;
+                                    }
+                                    //if college is not found then add it
+                                    if(!collegeFound){
+                                        CollegeDetails tempCollege = new CollegeDetails();
+                                        if(newCourse.courseName != null){
+                                            tempCollege = newCollege;
+                                            tempCollege.addCourse(newCourse);
+                                            multiResult.add(tempCollege);
+                                        }
                                     }
                                     //check if college or course exists if not store in arraylist
                                     //solution 1 store course and college in two separate arraylists then when needed compare college id's in both when calling a course
@@ -275,20 +292,22 @@ public class DbRequest{
                 e.printStackTrace();
             }
             //if page requesting details is login then get the user details object and store that in another object to be passed through
+            storeDbresults tempObject = new storeDbresults();
             switch (Type) {
                 case "Login": {
-                    storeDbresults tempObject = new storeDbresults();
                     tempObject.setTempUser(newUser);
                     return tempObject;
                 }
-                case "Search":
-                    return null;
+                case "Search":{
+                    tempObject.setMultiResult(multiResult);
+                    return tempObject;
+                }
                 case "Events": {
-                    storeDbresults tempObject = new storeDbresults();
                     tempObject.setMultiResult(multiResult);
                     return tempObject;
                 }
                 default:
+
                     return null;
             }
         }
@@ -348,6 +367,11 @@ public class DbRequest{
                     String[] tempdate = tempparam.split("-");
                     DBDetails.put("month", tempdate[1]);
                     break;
+                case "Rating":
+                    DBDetails.put("UserName", User.UserName);
+                    DBDetails.put("Comments", param.getComments());
+                    DBDetails.put("Rating", Float.toString(param.rating));
+                break;
             }
 
         }
@@ -387,10 +411,6 @@ public class DbRequest{
                     callBack.complete(newObject);
                     super.onPostExecute(newObject);
                     break;
-                case "AddUser":
-                    callBack.complete(null);
-                    super.onPostExecute(null);
-                    break;
                 case "Search":
                     callBack.complete(newObject);
                     super.onPostExecute(newObject);
@@ -400,7 +420,9 @@ public class DbRequest{
                     super.onPostExecute(newObject);
                     break;
                 default:
-                    //nothing yet
+                    //anything that dose not require a object response will be sent here
+                    callBack.complete(null);
+                    super.onPostExecute(null);
                     break;
             }
         }

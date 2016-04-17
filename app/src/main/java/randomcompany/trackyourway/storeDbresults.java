@@ -14,13 +14,22 @@ public class storeDbresults {
     static UserAccount tempUser;
     CollegeDetails tempCollegeDetails;
     CourseDetails tempCourseDetails;
-    String userSearch, date;
+    String userSearch, date, comments;
+    public float rating;
     //events are set to staic so application does not have to make new requests everytime the user visits the calendar during their session
     //not sure if events will be stored here
     Events collegeEvents;
-    ArrayList<Object> multiResult = new ArrayList<Object>();
+    static ArrayList<Object> multiResult = new ArrayList<Object>();
     public storeDbresults(){
        //tempUser = null;
+    }
+
+    public void setComments(String C){
+        comments = C;
+    }
+
+    public String getComments(){
+        return comments;
     }
 
     public void setUserSearch(String newUserSearch){

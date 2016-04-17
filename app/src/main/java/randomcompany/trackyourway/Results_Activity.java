@@ -8,12 +8,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class Results_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     ListView courseDetails;
@@ -34,7 +37,13 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         courseDetails.setAdapter(adapter);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //this is just a test
+        ArrayList<CollegeDetails> allResults = new ArrayList<>();
+        storeDbresults searchPerams = new storeDbresults();
+        allResults = searchPerams.getMultiResult();
+        CollegeDetails temp = allResults.get(0);
+        Log.d("testing object", temp.CollegeName);
+        //end of test
         courseDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

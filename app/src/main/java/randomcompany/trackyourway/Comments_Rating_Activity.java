@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class Comments_Rating_Activity extends AppCompatActivity implements Navig
     DrawerLayout mdrawer;
     NavigationView mNavigationView;
     Toolbar toolbar;
-
+    RatingBar bar;
     private List<Ratings> myRatings = new ArrayList<Ratings>();
 
     @Override
@@ -35,7 +36,7 @@ public class Comments_Rating_Activity extends AppCompatActivity implements Navig
         setContentView(R.layout.activity_comments__rating_);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        bar = (RatingBar) findViewById(R.id.ratingBar);
 
         populateRatingsList();
         populateListView();
@@ -50,6 +51,14 @@ public class Comments_Rating_Activity extends AppCompatActivity implements Navig
         //creating nav view with items in it
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        //get rating when change is made
+        bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                System.out.println("The current rating is " + String.valueOf(bar.getRating()));
+            }
+        });
 
     }
 
