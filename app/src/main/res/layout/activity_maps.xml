@@ -22,7 +22,8 @@
     tools:context="randomcompany.trackyourway.MapsActivity"
     tools:layout="@layout/abc_action_menu_item_layout"
         android:layout_weight="1.07"
-        android:layout_above="@+id/linearLayout" />
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"

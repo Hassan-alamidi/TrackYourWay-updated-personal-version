@@ -69,7 +69,7 @@ public class Events_Info_Activity extends AppCompatActivity implements Navigatio
             @Override
             public void onClick(View v) {
                 Intent i;
-                i = new Intent(getApplicationContext(), Comments_Rating_Activity.class);
+                i = new Intent(getApplicationContext(), Calendar_Activity.class);
                 startActivity(i);
             }
         });
@@ -151,6 +151,12 @@ public class Events_Info_Activity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, Calendar_Activity.class);
             startActivity(intent);
             return true;
+
+        } else if(id == R.id.nav_user_logout){
+            LocalUserDetails UserLogout = new LocalUserDetails();
+            UserLogout.removedetails();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 
         }
 

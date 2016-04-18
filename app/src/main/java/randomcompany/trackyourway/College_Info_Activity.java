@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 public class College_Info_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Button ratingsBtn,displayMapBtn;
@@ -24,7 +26,7 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
     NavigationView mNavigationView;
     Toolbar toolbar;
     CollegeDetails CollegeInfo = new CollegeDetails();
-
+    CollegeDetails temp2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +42,21 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
         colCourse = (TextView)findViewById(R.id.displayColCoursesTxt);
         colCourseDesc = (TextView)findViewById(R.id.displayColCourseDescTxt);
         colCourseDuration = (TextView)findViewById(R.id.displayColCourseDurTxt);
-
+        CourseDetails temp = (CourseDetails) getIntent().getSerializableExtra("Course");
+         temp2 = (CollegeDetails) getIntent().getSerializableExtra("College");
+        colCourse.setText(temp.courseName);
+        colCourseDesc.setText(temp.courseName);
+        //colCourseDuration.setText(temp.duration);
+        colName.setText(temp2.CollegeName);
+        colAddress.setText(temp2.CollegeAddress);
+        colEmail.setText(temp2.CollegeEmail);
+        colPhone.setText(temp2.CollegeContactDetails);
         ratingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(getApplicationContext(),Comments_Rating_Activity.class);
-                i.putExtra("CollegeID", CollegeInfo.CollegeID);
+                i.putExtra("CollegeID", (Serializable) CollegeInfo.CollegeID);
                 startActivity(i);
             }});
 
@@ -55,6 +65,9 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
             public  void onClick(View v){
                 Intent i;
                 i = new Intent(getApplicationContext(),MapsActivity.class);
+                i.putExtra("College", (Serializable) temp2);
+                String Page = "CollegeInfo";
+                i.putExtra("Page",Page );
                 startActivity(i);
             }});
 
@@ -137,6 +150,12 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
             Intent intent = new Intent(this, Calendar_Activity.class);
             startActivity(intent);
             return true;
+
+        } else if(id == R.id.nav_user_logout){
+            LocalUserDetails UserLogout = new LocalUserDetails();
+            UserLogout.removedetails();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 
         }
 

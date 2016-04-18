@@ -33,6 +33,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
     NavigationView mNavigationView;
     Toolbar toolbar;
     ArrayList<CollegeDetails> allResults = new ArrayList<>();
+    CollegeDetails temp = new CollegeDetails();
     storeDbresults searchPerams = new storeDbresults();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
 
 
         allResults = searchPerams.getMultiResult();
-        CollegeDetails temp = allResults.get(0);
+        temp = allResults.get(0);
         Log.d("testing object", temp.CollegeName);
         //allResults.get().
         //here is ending of get details
@@ -73,6 +74,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
                 ArrayList<CourseDetails> allCourses = temp2.Courses;
                 CourseDetails courseTemp = allCourses.get(position);
                 i.putExtra("Course", (Serializable) courseTemp);
+                i.putExtra("College", (Serializable) temp);
                 startActivity(i);
                 //collegeNameLabel.setText(mSearchList.get(position).getCollegeName().toString());
 
@@ -195,6 +197,12 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
             Intent intent = new Intent(this, Calendar_Activity.class);
             startActivity(intent);
             return true;
+
+        } else if(id == R.id.nav_user_logout){
+            LocalUserDetails UserLogout = new LocalUserDetails();
+            UserLogout.removedetails();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 
         }
 
