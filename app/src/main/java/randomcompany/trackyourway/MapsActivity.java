@@ -21,6 +21,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.Serializable;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -28,7 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationListener locationlist;
     private double userLongitude;
     private double userLatitude;
-    private Button btnFindMe;
+    private Button btnFindMe, PrevPage;
     private Events newEvent;
     private String page;
     // permissionsrequest not working right now
@@ -42,7 +44,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        btnFindMe = (Button) findViewById(R.id.button);
+        btnFindMe = (Button) findViewById(R.id.GetUserLocation);
+        PrevPage = (Button) findViewById(R.id.prevPage);
         locationMgr = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationlist = new LocationListener() {
             @Override
@@ -72,12 +75,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        checkPermission();
        findme();
         //time and distance updates are long because updates are not really required
-        page = getIntent().getExtras().getString("page");
-        if (page.equals("Page")) {
+        page = getIntent().getExtras().getString("Page");
+        if (page.equals("Event")) {
 
             newEvent = new Events();
             newEvent = (Events) getIntent().getSerializableExtra("Event");
         }
+        PrevPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i;
+                i = new Intent(getApplicationContext(), Events_Info_Activity.class);
+                if(page.equals("Event"))
+                i.putExtra("Event", (Serializable) newEvent);
+                startActivity(i);
+            }
+        });
     }
 
     public void checkPermission(){
