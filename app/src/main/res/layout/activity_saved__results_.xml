@@ -60,7 +60,7 @@
                 android:layout_marginTop="39dp"
                 android:layout_below="@+id/textView19"
                 android:layout_centerHorizontal="true"
-                android:clickable="true" />
+                android:clickable="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,9 +69,10 @@
                 android:text="Student Grant:"
                 android:id="@+id/studentGrantTxtHL"
                 android:textColor="#ffffff"
-                android:layout_centerVertical="true"
+                android:clickable="false"
+                android:layout_below="@+id/dareLink"
                 android:layout_centerHorizontal="true"
-                android:clickable="true" />
+                android:layout_marginTop="35dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,10 +81,10 @@
                 android:text="Foreign Assistance:"
                 android:id="@+id/foreignAssistTxtHL"
                 android:textColor="#ffffff"
-                android:layout_below="@+id/studentGrantTxtHL"
-                android:layout_alignEnd="@+id/textView18"
-                android:layout_marginTop="46dp"
-                android:clickable="true" />
+                android:clickable="false"
+                android:layout_below="@+id/studGrantLink"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -91,11 +92,63 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Susi Scheme"
                 android:id="@+id/susiTxtHL"
+                android:textColor="#ffffff"
+                android:clickable="false"
+                android:layout_below="@+id/forAssisLink"
+                android:layout_alignEnd="@+id/dareHearTxtHL"
+                android:layout_marginTop="35dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="http://goo.gl/nWieTo"
+                android:id="@+id/dareLink"
+                android:autoLink="all"
+                android:layout_below="@+id/dareHearTxtHL"
+                android:layout_centerHorizontal="true"
+                android:textColor="#22d922"
+                android:clickable="true"
+                android:background="#2f2f2f" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="http://goo.gl/SKnrZu"
+                android:id="@+id/studGrantLink"
+                android:autoLink="all"
+                android:layout_below="@+id/studentGrantTxtHL"
+                android:layout_centerHorizontal="true"
+                android:textColor="#22d922"
+                android:clickable="true"
+                android:background="#2f2f2f" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="https://goo.gl/U6JAgC"
+                android:id="@+id/forAssisLink"
+                android:autoLink="all"
+                android:textColor="#22d922"
                 android:layout_below="@+id/foreignAssistTxtHL"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="41dp"
-                android:textColor="#ffffff"
-                android:clickable="true" />
+                android:clickable="true"
+                android:background="#2f2f2f" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="https://goo.gl/HQIboU"
+                android:id="@+id/susiLink"
+                android:autoLink="all"
+                android:textColor="#22d922"
+                android:layout_below="@+id/susiTxtHL"
+                android:layout_alignStart="@+id/forAssisLink"
+                android:clickable="true"
+                android:background="#2f2f2f" />
 
         </RelativeLayout>
 
