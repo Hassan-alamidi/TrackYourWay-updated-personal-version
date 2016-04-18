@@ -7,10 +7,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
-import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +29,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double userLongitude;
     private double userLatitude;
     private Button btnFindMe;
+    private Events newEvent;
+    private String page;
     // permissionsrequest not working right now
     //permissionsRequest request = new permissionsRequest();
     @Override
@@ -71,8 +72,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        checkPermission();
        findme();
         //time and distance updates are long because updates are not really required
+        page = getIntent().getExtras().getString("page");
+        if (page.equals("Page")) {
 
-
+            newEvent = new Events();
+            newEvent = (Events) getIntent().getSerializableExtra("Event");
+        }
     }
 
     public void checkPermission(){
@@ -135,10 +140,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         LatLng nci = new LatLng(53.348889,-6.243199);
-
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.addMarker(new MarkerOptions().position(nci).title("Marker in nci"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(nci));
+        if(page.equals("Page")) {
+            LatLng EventLocation = new LatLng(newEvent.latitude, newEvent.longitude);
+            mMap.addMarker(new MarkerOptions().position(EventLocation).title("Marker for event"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(EventLocation));
+        }
        // mMap.addMarker(new MarkerOptions().position(user).title("user"));
         //need to figure out how to ask and check for permissions
         //if(checkPermission() = true) {

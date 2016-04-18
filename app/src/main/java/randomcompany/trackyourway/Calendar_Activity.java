@@ -15,9 +15,12 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Calendar_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,11 +28,12 @@ public class Calendar_Activity extends AppCompatActivity implements NavigationVi
     DrawerLayout mdrawer;
     NavigationView mNavigationView;
     Toolbar toolbar;
-
-
+    ArrayList<Events> allEvents = new ArrayList<>();
+    SimpleDateFormat DMY;
     CalendarView calendarView;
     TextView displayEvents;
     storeDbresults storeParam = new storeDbresults();
+    String SelectedDateString, EventDateString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,7 @@ public class Calendar_Activity extends AppCompatActivity implements NavigationVi
         setSupportActionBar(toolbar);
 
         //declaring date format
-        SimpleDateFormat DMY = new SimpleDateFormat("dd-MM-yyyy");
+        DMY = new SimpleDateFormat("dd-MM-yyyy");
         //getting current date in perfered format
         String date = DMY.format(currentDate.getTime());
         //testing date
@@ -55,13 +59,37 @@ public class Calendar_Activity extends AppCompatActivity implements NavigationVi
 
                 displayEvents.setText("Insert database");
                 Toast.makeText(getApplicationContext(), "Selected Date:\n" + "Day = " + i2 + "\n" + "Month = " + i1 + "\n" + "Year = " + i, Toast.LENGTH_LONG).show();
+                for(int j = 0; j <  allEvents.size(); j++){
+                    Events newEvents = allEvents.get(j);
+                    try {
+                        Date eventDate = DMY.parse(newEvents.eventDate);
+                        EventDateString = DMY.format(eventDate);
+                        System.out.println("Testing new format" + EventDateString);
+                        String selected = i2 + "-" + i1 + "-" + i;
+                        Date selectedDate = DMY.parse(selected);
+                        SelectedDateString = DMY.format(eventDate);
+                        System.out.println("Testing new format" + SelectedDateString);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
 
+                    if(EventDateString.equals(SelectedDateString)){
+                        Intent intent;
+                        intent = new Intent(getApplicationContext(),Events_Info_Activity.class);
+                        //intent.putExtra("Event", (Parcelable) newEvents);
+                        intent.putExtra("Event", (Serializable) newEvents);
+                        startActivity(intent);
+                    }
+
+
+
+
+                }
 
             }
         });
-
         if (date.equals(null)) {
-            Log.d("you have not ", "entered any details");
+            Log.d("date could not ", "be gathered");
         } else {
             storeParam.setDate(date);
             CheckDetails(storeParam);
@@ -112,7 +140,7 @@ public class Calendar_Activity extends AppCompatActivity implements NavigationVi
         newRequest.DbRetrieveDetails(Type, newSearchParam, new CallBackInter() {
             @Override
             public void complete(storeDbresults newObject) {
-                ArrayList<Events> allEvents = new ArrayList<>();
+
                 storeDbresults searchPerams = newObject;
                 allEvents = searchPerams.getMultiResult();
                 //check if correct
@@ -124,7 +152,8 @@ public class Calendar_Activity extends AppCompatActivity implements NavigationVi
                 } else {
 
                     Events newEvents = allEvents.get(0);
-                    Log.d("testing object", newEvents.eventDate);
+                    Log.d("testing object in Cal", newEvents.eventDate);
+
 
                 }
             }

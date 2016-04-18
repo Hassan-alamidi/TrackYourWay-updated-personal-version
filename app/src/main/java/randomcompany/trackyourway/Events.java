@@ -1,9 +1,11 @@
 package randomcompany.trackyourway;
 
+import java.io.Serializable;
+
 /**
  * Created by Hassan on 06/04/2016.
  */
-public class Events {
+public class Events implements Serializable{
     String eventTitle, eventDetails,eventLocation;
     double longitude, latitude;
     String eventDate;
