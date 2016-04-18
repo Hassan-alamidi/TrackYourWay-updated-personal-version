@@ -1,12 +1,13 @@
 package randomcompany.trackyourway;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Created by Hassan on 06/04/2016.
  */
-public class CollegeDetails {
+public class CollegeDetails implements Serializable{
 
     String CollegeName, CollegeAddress, CollegeEmail, CollegeContactDetails;
     double longitude,latitude;

@@ -33,6 +33,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button btnFindMe, PrevPage;
     private Events newEvent;
     private String page;
+    CollegeDetails College;
     // permissionsrequest not working right now
     //permissionsRequest request = new permissionsRequest();
     @Override
@@ -80,6 +81,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             newEvent = new Events();
             newEvent = (Events) getIntent().getSerializableExtra("Event");
+        }else if(page.equals("CollegeInfo")){
+            College = new CollegeDetails();
+            College = (CollegeDetails) getIntent().getSerializableExtra("College");
         }
         PrevPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,10 +157,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         LatLng nci = new LatLng(53.348889,-6.243199);
-        if(page.equals("Page")) {
+        if(page.equals("Event")) {
             LatLng EventLocation = new LatLng(newEvent.latitude, newEvent.longitude);
             mMap.addMarker(new MarkerOptions().position(EventLocation).title("Marker for event"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(EventLocation));
+        }else if(page.equals("CollegeInfo")){
+            LatLng CollegeLocation = new LatLng(College.latitude, College.longitude);
+            mMap.addMarker(new MarkerOptions().position(CollegeLocation).title("Marker for College"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(CollegeLocation));
         }
        // mMap.addMarker(new MarkerOptions().position(user).title("user"));
         //need to figure out how to ask and check for permissions
