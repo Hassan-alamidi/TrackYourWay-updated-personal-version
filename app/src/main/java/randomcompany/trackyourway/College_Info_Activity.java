@@ -12,10 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class College_Info_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Button ratingsBtn,displayMapBtn;
+    TextView colName,colAddress,colEmail,colPhone,colCourse,colCourseDesc,colCourseDuration;
 
     //creating objects for navigation drawer
     DrawerLayout mdrawer;
@@ -31,6 +33,13 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
         setSupportActionBar(toolbar);
         ratingsBtn = (Button)findViewById(R.id.ratingsBtn);
         displayMapBtn = (Button)findViewById(R.id.display_map_btn);
+        colName = (TextView)findViewById(R.id.displayColNameTxt);
+        colAddress = (TextView)findViewById(R.id.displayColAddressTxt);
+        colEmail = (TextView)findViewById(R.id.displayColEmailTxt);
+        colPhone = (TextView)findViewById(R.id.displayColNumTxt);
+        colCourse = (TextView)findViewById(R.id.displayColCoursesTxt);
+        colCourseDesc = (TextView)findViewById(R.id.displayColCourseDescTxt);
+        colCourseDuration = (TextView)findViewById(R.id.displayColCourseDurTxt);
 
         ratingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
