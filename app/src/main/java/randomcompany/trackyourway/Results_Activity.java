@@ -31,8 +31,8 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
     DrawerLayout mdrawer;
     NavigationView mNavigationView;
     Toolbar toolbar;
-
-
+    ArrayList<CollegeDetails> allResults = new ArrayList<>();
+    storeDbresults searchPerams = new storeDbresults();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +46,14 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         //add sample data here
         //we can get data from DB here
 
-        mSearchList.add(new SearchResListView(1,"NCI","Computing"));
+        populateList();
 
         //Init Adapter
         adapter = new SearchResListAdapter(getApplicationContext(),mSearchList);
         lvCollege.setAdapter(adapter);
         //here is how to get details
-        ArrayList<CollegeDetails> allResults = new ArrayList<>();
-        storeDbresults searchPerams = new storeDbresults();
+
+
         allResults = searchPerams.getMultiResult();
         CollegeDetails temp = allResults.get(0);
         Log.d("testing object", temp.CollegeName);
@@ -107,6 +107,22 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         //creating nav view with items in it
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    public void populateList(){
+        mSearchList.add(new SearchResListView(1,"NCI","Computing"));
+        allResults = searchPerams.getMultiResult();
+        for(int i = 0; i < allResults.size();i++){
+            CollegeDetails oneCollege = allResults.get(i);
+            ArrayList<CourseDetails> allCourses = oneCollege.Courses;
+            for(int j = 0; j < allCourses.size();j++){
+                CourseDetails oneCourse = allCourses.get(j);
+                mSearchList.add(new SearchResListView(j,oneCollege.CollegeName, oneCourse.courseName));
+
+            }
+
+        }
 
     }
 
