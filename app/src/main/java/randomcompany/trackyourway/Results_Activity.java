@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +50,13 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         //Init Adapter
         adapter = new SearchResListAdapter(getApplicationContext(),mSearchList);
         lvCollege.setAdapter(adapter);
-
+        //here is how to get details
+        ArrayList<CollegeDetails> allResults = new ArrayList<>();
+        storeDbresults searchPerams = new storeDbresults();
+        allResults = searchPerams.getMultiResult();
+        CollegeDetails temp = allResults.get(0);
+        Log.d("testing object", temp.CollegeName);
+        //here is ending of get details
         lvCollege.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -74,11 +79,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //this is just a test
-        //ArrayList<CollegeDetails> allResults = new ArrayList<>();
-        //storeDbresults searchPerams = new storeDbresults();
-        //allResults = searchPerams.getMultiResult();
-        //CollegeDetails temp = allResults.get(0);
-        //Log.d("testing object", temp.CollegeName);
+
         //end of test
         /*courseDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
