@@ -49,17 +49,7 @@
         android:layout_marginLeft="10dp" />
 
 
-            <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/keywords"
-        android:layout_gravity="left|top"
-        android:background="#a69f9f"
-        android:hint="KeyWords"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="10dp" />
-
-    <ImageButton
+            <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/newSearchBtn"

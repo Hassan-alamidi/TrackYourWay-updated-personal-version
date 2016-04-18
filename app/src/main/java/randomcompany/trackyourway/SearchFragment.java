@@ -47,7 +47,7 @@ public class SearchFragment extends AppCompatActivity implements NavigationView.
 
 
         instituteTf = (EditText) findViewById(R.id.instituteTf);
-
+        SearchBtn = (ImageButton) findViewById(R.id.newSearchBtn);
 
         //hamburger icon to open navigation drawer
         mdrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -67,10 +67,7 @@ public class SearchFragment extends AppCompatActivity implements NavigationView.
                 //SearchPeramiters search = new SearchPeramiters();
                 storeDbresults storeParam = new storeDbresults();
                 CollegeName = instituteTf.getText().toString();
-                CourseName = courseTf.getText().toString();
-                CollegeLocation = locationTf.getText().toString();
-                CourseType = courseTypeTf.getText().toString();
-                keywords = courseTf.getText().toString();
+
                 //checking for every possible outcome
 //                if(!CollegeName.equals(null) && !CollegeName.equals("")){
 //                    //keywords will not be nested in any section

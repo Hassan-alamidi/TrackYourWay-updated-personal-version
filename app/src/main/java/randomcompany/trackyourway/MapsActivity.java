@@ -88,11 +88,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         PrevPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i;
-                i = new Intent(getApplicationContext(), Events_Info_Activity.class);
-                if(page.equals("Event"))
-                i.putExtra("Event", (Serializable) newEvent);
+
+                if(page.equals("Event")){
+                    Intent i;
+                    i = new Intent(getApplicationContext(), Events_Info_Activity.class);
+                    i.putExtra("Event", (Serializable) newEvent);
                 startActivity(i);
+                }else if(page.equals("CollegeInfo")){
+                        Intent i;
+                        i = new Intent(getApplicationContext(), SearchFragment.class);
+                        startActivity(i);
+                }
             }
         });
     }
