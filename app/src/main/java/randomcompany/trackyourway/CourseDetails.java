@@ -1,9 +1,11 @@
 package randomcompany.trackyourway;
 
+import java.io.Serializable;
+
 /**
  * Created by Hassan on 10/03/2016.
  */
-public class CourseDetails extends CollegeDetails{
+public class CourseDetails extends CollegeDetails implements Serializable{
 
     String courseName, description, type, level;
     int duration , courseID, collegeID;
