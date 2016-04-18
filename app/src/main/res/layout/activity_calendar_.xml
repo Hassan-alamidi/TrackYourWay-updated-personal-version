@@ -40,7 +40,7 @@
     <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/calendarView"
+        android:id="@+id/Cal2"
         android:layout_below="@+id/txtCollegeNameHeading"
         android:layout_centerHorizontal="true"
         android:background="#d1d0d0"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="Upcoming college Events"
         android:id="@+id/textView23"
-        android:layout_below="@+id/calendarView"
+        android:layout_below="@+id/Cal2"
         android:layout_centerHorizontal="true"
         android:editable="false"
 
