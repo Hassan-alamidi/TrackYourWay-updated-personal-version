@@ -45,7 +45,8 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         mSearchList = new ArrayList<>();
         //add sample data here
         //we can get data from DB here
-        mSearchList.add(new SearchResListView(1,"NCI"));
+
+        mSearchList.add(new SearchResListView(1,"NCI","Computing"));
 
         //Init Adapter
         adapter = new SearchResListAdapter(getApplicationContext(),mSearchList);
@@ -56,6 +57,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         allResults = searchPerams.getMultiResult();
         CollegeDetails temp = allResults.get(0);
         Log.d("testing object", temp.CollegeName);
+        //allResults.get().
         //here is ending of get details
         lvCollege.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

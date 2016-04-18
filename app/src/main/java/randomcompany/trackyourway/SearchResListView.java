@@ -6,12 +6,14 @@ package randomcompany.trackyourway;
 public class SearchResListView {
     private int id;
     private String collegeName;
+    private String courseType;
 
 
     //Constructor
-    public SearchResListView(int id, String collegeName) {
+    public SearchResListView(int id, String collegeName, String courseType) {
         this.id = id;
         this.collegeName = collegeName;
+        this.courseType = courseType;
     }
     //set & gets
 
@@ -29,5 +31,13 @@ public class SearchResListView {
 
     public void setCollegeName(String collegeName) {
         this.collegeName = collegeName;
+    }
+
+    public String getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 }
