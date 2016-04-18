@@ -41,7 +41,6 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
         colPhone = (TextView)findViewById(R.id.displayColNumTxt);
         colCourse = (TextView)findViewById(R.id.displayColCoursesTxt);
         colCourseDesc = (TextView)findViewById(R.id.displayColCourseDescTxt);
-        colCourseDuration = (TextView)findViewById(R.id.displayColCourseDurTxt);
         CourseDetails temp = (CourseDetails) getIntent().getSerializableExtra("Course");
          temp2 = (CollegeDetails) getIntent().getSerializableExtra("College");
         colCourse.setText(temp.courseName);

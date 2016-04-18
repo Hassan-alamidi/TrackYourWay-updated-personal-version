@@ -44,5 +44,9 @@ public class CollegeDetails implements Serializable{
         return false;
     }
 
+    public int CheckAmountOfCourses(){
+        return Courses.size();
+    }
+
 
 }

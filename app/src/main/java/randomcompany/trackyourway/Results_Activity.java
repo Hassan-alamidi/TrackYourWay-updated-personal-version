@@ -35,6 +35,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
     ArrayList<CollegeDetails> allResults = new ArrayList<>();
     CollegeDetails temp = new CollegeDetails();
     storeDbresults searchPerams = new storeDbresults();
+    int collegeloop, courseloop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,8 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
         collegeNameLabel = (TextView)findViewById(R.id.collegeNameLabel);
 
         lvCollege = (ListView)findViewById(R.id.searchResListView);
-
+        collegeloop = 0;
+        courseloop = 0;
         mSearchList = new ArrayList<>();
         //add sample data here
         //we can get data from DB here
@@ -71,7 +73,10 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
                 i = new Intent(getApplicationContext(),College_Info_Activity.class);
                 allResults = searchPerams.getMultiResult();
                 CollegeDetails temp2 = allResults.get(0);
+                int numresults = allResults.size();
+                int test = numresults - position;
                 ArrayList<CourseDetails> allCourses = temp2.Courses;
+                int numCourses = allCourses.size();
                 CourseDetails courseTemp = allCourses.get(position);
                 i.putExtra("Course", (Serializable) courseTemp);
                 i.putExtra("College", (Serializable) temp);
@@ -129,9 +134,9 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
                 mSearchList.add(new SearchResListView(j,oneCollege.CollegeName, oneCourse.courseName));
 
             }
-
+            courseloop++;
         }
-
+        collegeloop++;
     }
 
     @Override

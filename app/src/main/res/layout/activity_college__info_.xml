@@ -193,29 +193,6 @@
                 android:background="#5a5a5a"
                 android:textColor="#ffffff" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Duration"
-                android:id="@+id/courseDurLabel"
-                android:layout_below="@+id/courseDescLabel"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="24dp"
-                android:textColor="#ffffff"
-                android:background="#5a5a5a" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/displayColCourseDurTxt"
-                android:background="#5a5a5a"
-                android:textColor="#ffffff"
-                android:layout_alignTop="@+id/courseDurLabel"
-                android:layout_alignStart="@+id/displayColCourseDescTxt" />
-
 
         </RelativeLayout>
 

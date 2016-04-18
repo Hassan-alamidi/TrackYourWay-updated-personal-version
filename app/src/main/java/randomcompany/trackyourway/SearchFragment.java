@@ -47,11 +47,7 @@ public class SearchFragment extends AppCompatActivity implements NavigationView.
 
 
         instituteTf = (EditText) findViewById(R.id.instituteTf);
-        courseTf = (EditText) findViewById(R.id.courseTf);
-        SearchBtn = (ImageButton) findViewById(R.id.newSearchBtn);
-        locationTf = (EditText) findViewById(R.id.locationTf);
-        courseTypeTf = (EditText) findViewById(R.id.courseTypeTf);
-        CourseKeyWords = (EditText) findViewById(R.id.keywords);
+
 
         //hamburger icon to open navigation drawer
         mdrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
