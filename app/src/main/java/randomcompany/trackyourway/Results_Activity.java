@@ -15,11 +15,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Results_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    ListView courseDetails;
+    //ListView courseDetails;
+    private ListView lvCollege;
+    private SearchResListAdapter adapter;
+    private List<SearchResListView> mSearchList;
+    private TextView collegeNameLabel;
 
     //creating objects for navigation drawer
     DrawerLayout mdrawer;
@@ -31,20 +38,49 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_);
-        courseDetails = (ListView)findViewById(R.id.listView);
-        String[] items = {"temp", "temp 2"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
-        courseDetails.setAdapter(adapter);
+
+        collegeNameLabel = (TextView)findViewById(R.id.collegeNameLabel);
+
+        lvCollege = (ListView)findViewById(R.id.searchResListView);
+
+        mSearchList = new ArrayList<>();
+        //add sample data here
+        //we can get data from DB here
+        mSearchList.add(new SearchResListView(1,"NCI"));
+
+        //Init Adapter
+        adapter = new SearchResListAdapter(getApplicationContext(),mSearchList);
+        lvCollege.setAdapter(adapter);
+
+        lvCollege.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //do something
+                //
+                Toast.makeText(getApplicationContext(), "Id & Name of clicked college " + view.getTag(), Toast.LENGTH_SHORT).show();
+                Intent i;
+                i = new Intent(getApplicationContext(),College_Info_Activity.class);
+                startActivity(i);
+                //collegeNameLabel.setText(mSearchList.get(position).getCollegeName().toString());
+
+            }
+        });
+
+
+        //courseDetails = (ListView)findViewById(R.id.listView);
+        //String[] items = {"temp", "temp 2"};
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
+        //courseDetails.setAdapter(adapter);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //this is just a test
-        ArrayList<CollegeDetails> allResults = new ArrayList<>();
-        storeDbresults searchPerams = new storeDbresults();
-        allResults = searchPerams.getMultiResult();
-        CollegeDetails temp = allResults.get(0);
-        Log.d("testing object", temp.CollegeName);
+        //ArrayList<CollegeDetails> allResults = new ArrayList<>();
+        //storeDbresults searchPerams = new storeDbresults();
+        //allResults = searchPerams.getMultiResult();
+        //CollegeDetails temp = allResults.get(0);
+        //Log.d("testing object", temp.CollegeName);
         //end of test
-        courseDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*courseDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,7 +92,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
                         break;
                 }
             }
-        });
+        });*/
 
         //hamburger icon to open navigation drawer
         mdrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
