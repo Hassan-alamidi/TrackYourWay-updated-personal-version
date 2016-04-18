@@ -9,7 +9,11 @@ import android.util.Log;
  */
 public class LocalUserDetails {
     private static final String FileName = "AccountDetails";
-    SharedPreferences userDetails;
+    static SharedPreferences userDetails;
+
+    public LocalUserDetails(){
+
+    }
 
     public LocalUserDetails(Context context){
         userDetails = context.getSharedPreferences(FileName, 0);

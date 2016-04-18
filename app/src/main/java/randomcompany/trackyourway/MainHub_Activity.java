@@ -8,7 +8,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -132,6 +131,12 @@ public class MainHub_Activity extends AppCompatActivity implements NavigationVie
             Intent intent = new Intent(this, Calendar_Activity.class);
             startActivity(intent);
             return true;
+
+        } else if(id == R.id.nav_user_logout){
+            LocalUserDetails UserLogout = new LocalUserDetails();
+            UserLogout.removedetails();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 
         }
 

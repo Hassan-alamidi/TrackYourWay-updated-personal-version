@@ -175,6 +175,12 @@ public class Comments_Rating_Activity extends AppCompatActivity implements Navig
             startActivity(intent);
             return true;
 
+        } else if(id == R.id.nav_user_logout){
+            LocalUserDetails UserLogout = new LocalUserDetails();
+            UserLogout.removedetails();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+
         }
 
         mdrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
