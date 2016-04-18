@@ -45,7 +45,7 @@ public class Calendar_Activity extends AppCompatActivity implements NavigationVi
         String date = DMY.format(currentDate.getTime());
         //testing date
         Log.d("current date is", date);
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
+        calendarView = (CalendarView) findViewById(R.id.Cal2);
         displayEvents = (TextView) findViewById(R.id.txtDisplayEvents);
         displayEvents.setText("Events today: ");
 
@@ -77,6 +77,7 @@ public class Calendar_Activity extends AppCompatActivity implements NavigationVi
         //creating nav view with items in it
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
 
 
     }
