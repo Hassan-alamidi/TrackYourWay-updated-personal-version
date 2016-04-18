@@ -40,8 +40,10 @@ public class SearchResListAdapter extends BaseAdapter {
         View v = View.inflate(mContext,R.layout.item_search_res_view, null);
         TextView colName = (TextView)v.findViewById(R.id.item_searchRes_colName);
         colName.setText(mSearchResList.get(position).getCollegeName());
+        TextView courseType =(TextView)v.findViewById(R.id.item_searchRes_courseType);
+        courseType.setText(mSearchResList.get(position).getCourseType());
 
-        v.setTag(mSearchResList.get(position).getId()+" "+mSearchResList.get(position).getCollegeName());
+        v.setTag(mSearchResList.get(position).getId()+" "+mSearchResList.get(position).getCollegeName()+" "+mSearchResList.get(position).getCourseType());
         return v;
     }
 }
