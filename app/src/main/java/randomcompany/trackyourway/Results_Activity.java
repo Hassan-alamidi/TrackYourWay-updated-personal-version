@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +68,11 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
                 Toast.makeText(getApplicationContext(), "Id & Name of clicked college " + view.getTag(), Toast.LENGTH_SHORT).show();
                 Intent i;
                 i = new Intent(getApplicationContext(),College_Info_Activity.class);
+                allResults = searchPerams.getMultiResult();
+                CollegeDetails temp2 = allResults.get(0);
+                ArrayList<CourseDetails> allCourses = temp2.Courses;
+                CourseDetails courseTemp = allCourses.get(position);
+                i.putExtra("Course", (Serializable) courseTemp);
                 startActivity(i);
                 //collegeNameLabel.setText(mSearchList.get(position).getCollegeName().toString());
 
@@ -111,7 +117,7 @@ public class Results_Activity extends AppCompatActivity implements NavigationVie
     }
 
     public void populateList(){
-        mSearchList.add(new SearchResListView(1,"NCI","Computing"));
+
         allResults = searchPerams.getMultiResult();
         for(int i = 0; i < allResults.size();i++){
             CollegeDetails oneCollege = allResults.get(i);
