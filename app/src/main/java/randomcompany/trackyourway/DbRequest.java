@@ -19,7 +19,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -269,13 +271,7 @@ public class DbRequest{
                                             multiResult.add(tempCollege);
                                         }
                                     }
-                                    //check if college or course exists if not store in arraylist
-                                    //solution 1 store course and college in two separate arraylists then when needed compare college id's in both when calling a course
-                                    //pros are we can remove duplicate colleges or courses, code not as nice.
-                                    //solution 2 store course and colleges in one arraylist then when needed you can get each college by every second iteration though the index and the related course will be before it
-                                    //pros code maybe cleaner, cons there will be duplicates and there maybe issues if a college is selected with no course.
-                                    //solution 3 store course objects in colleges and store colleges in arraylist, you can access each course contained within the college with no need to reference the college id's
-                                    //cons my be hard to implement
+
                                 }
                                 //should be linked up to use college and course details
                                 //newEvents = new Events(singleQuery[0], singleQuery[1], singleQuery[2], singleQuery[3], singleQuery[4], Double.parseDouble(singleQuery[5]), Double.parseDouble(singleQuery[6]));
@@ -370,7 +366,12 @@ public class DbRequest{
                 case "Rating":
                     DBDetails.put("UserName", User.UserName);
                     DBDetails.put("Comments", param.getComments());
-                    DBDetails.put("Rating", Float.toString(param.rating));
+                    DBDetails.put("rating", Float.toString(param.rating));
+                    Calendar currentDate = Calendar.getInstance();
+                    SimpleDateFormat DMY = new SimpleDateFormat("dd-MM-yyyy");
+                    String date = DMY.format(currentDate.getTime());
+                    DBDetails.put("Date", date);
+                    DBDetails.put("collegeid", Integer.toString(param.CollegeID));
                 break;
             }
 

@@ -43,7 +43,10 @@
         android:id="@+id/ratingBar"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView20"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:numStars="5"
+        android:rating="5"
+        android:background="#6afcf40d" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,18 +63,18 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/Comments"
         android:layout_below="@+id/textView21"
         android:layout_alignStart="@+id/ratingBar"
         android:layout_alignEnd="@+id/ratingBar"
 
-        />
+        android:inputType="text" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingListView"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/Comments"
         android:layout_alignParentEnd="false"
         android:layout_marginBottom="40dp" />
 
@@ -79,22 +82,22 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/button2"
+        android:text="@string/submit"
+        android:id="@+id/Submit"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="490dp" />
 
 </RelativeLayout>
 
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer" />
+        <!--<android.support.design.widget.NavigationView-->
+            <!--android:id="@+id/nav_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="start"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--app:headerLayout="@layout/nav_header_main"-->
+            <!--app:menu="@menu/activity_main_drawer" />-->
 
 
     </android.support.v4.widget.DrawerLayout>

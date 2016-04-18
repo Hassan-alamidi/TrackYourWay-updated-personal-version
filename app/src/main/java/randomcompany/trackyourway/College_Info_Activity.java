@@ -21,8 +21,7 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
     DrawerLayout mdrawer;
     NavigationView mNavigationView;
     Toolbar toolbar;
-
-
+    CollegeDetails CollegeInfo = new CollegeDetails();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +37,7 @@ public class College_Info_Activity extends AppCompatActivity implements Navigati
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(getApplicationContext(),Comments_Rating_Activity.class);
+                i.putExtra("CollegeID", CollegeInfo.CollegeID);
                 startActivity(i);
             }});
 

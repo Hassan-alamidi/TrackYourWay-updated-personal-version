@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -27,9 +29,13 @@ public class Comments_Rating_Activity extends AppCompatActivity implements Navig
     DrawerLayout mdrawer;
     NavigationView mNavigationView;
     Toolbar toolbar;
-    RatingBar bar;
+    private RatingBar bar;
     private List<Ratings> myRatings = new ArrayList<Ratings>();
-
+    public storeDbresults newResults = new storeDbresults();
+    private Button Submit;
+    private float newRating;
+    private EditText newComments;
+    int CollegeID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +43,13 @@ public class Comments_Rating_Activity extends AppCompatActivity implements Navig
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         bar = (RatingBar) findViewById(R.id.ratingBar);
-
+        Submit = (Button) findViewById(R.id.Submit);
+        newComments = (EditText) findViewById(R.id.Comments);
+        Intent CollegeIntent = getIntent();
+        CollegeID = CollegeIntent.getExtras().getInt("CollegeID");
         populateRatingsList();
         populateListView();
-
+        Listeners();
         //hamburger icon to open navigation drawer
         mdrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,15 +61,43 @@ public class Comments_Rating_Activity extends AppCompatActivity implements Navig
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
+
+
+    }
+
+
+    public void Listeners(){
         //get rating when change is made
         bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 System.out.println("The current rating is " + String.valueOf(bar.getRating()));
+                newRating = bar.getRating();
             }
         });
 
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newResults.rating = newRating;
+                newResults.comments = newComments.getText().toString();
+                newResults.CollegeID = CollegeID;
+            }
+        });
     }
+
+
+    private void UserRating(storeDbresults newRating){
+        DbRequest reg = new DbRequest(this);
+        String sType = "Rating";
+        reg.DbRetrieveDetails(sType ,newRating, new CallBackInter() {
+            @Override
+            public void complete(storeDbresults newObject) {
+
+            }
+        });
+    }
+
 
     private void populateRatingsList() {
         myRatings.add(new Ratings("Brilliant", R.drawable.stars4));

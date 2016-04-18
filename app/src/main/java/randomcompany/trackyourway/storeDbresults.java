@@ -14,8 +14,9 @@ public class storeDbresults {
     static UserAccount tempUser;
     CollegeDetails tempCollegeDetails;
     CourseDetails tempCourseDetails;
-    String userSearch, date, comments;
+    String userSearch, date, comments, sendUserName;
     public float rating;
+    int CollegeID;
     //events are set to staic so application does not have to make new requests everytime the user visits the calendar during their session
     //not sure if events will be stored here
     Events collegeEvents;

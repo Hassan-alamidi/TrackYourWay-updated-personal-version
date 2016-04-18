@@ -130,4 +130,5 @@
     <string name="savedSearchLabel">Saved Searches</string>
     <string name="eventsCalendarLabel">Events Calendar</string>
     <string name="mainHubLabel">Main Hub</string>
+    <string name="submit">Submit</string>
 </resources>
