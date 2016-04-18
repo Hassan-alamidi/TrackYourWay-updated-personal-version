@@ -36,7 +36,7 @@
         android:layout_marginBottom="31dp"
         android:background="#6b6b6b"
         android:layout_above="@+id/newSearchBtn"
-        android:layout_alignStart="@+id/newSearchBtn" />
+        android:layout_alignEnd="@+id/newSearchBtn" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -44,15 +44,15 @@
         android:id="@+id/savedSearchBtn"
         android:background="@drawable/mycollegesmage1"
         android:clickable="true"
-        android:layout_above="@+id/savedSearchesLabel"
+        android:layout_above="@+id/grantsAndSchemesLabel"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/savedSearchLabel"
-        android:id="@+id/savedSearchesLabel"
+        android:text="@string/gantsAndSchemes"
+        android:id="@+id/grantsAndSchemesLabel"
         android:textColor="#eeecec"
         android:background="#6b6b6b"
         android:layout_above="@+id/forum_btn"
@@ -99,7 +99,7 @@
         android:textColor="#f9f9f9"
         android:background="#6b6b6b"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/savedSearchesLabel" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 
        <!--<android.support.design.widget.NavigationView-->

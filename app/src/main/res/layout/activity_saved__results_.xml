@@ -27,6 +27,75 @@
             android:layout_height="match_parent">
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Grants And Schemes"
+                android:id="@+id/textView18"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="This Is al list of useful sites to aid you in starting your further education"
+                android:id="@+id/textView19"
+                android:layout_below="@+id/textView18"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:textColor="#ffffff"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Dare &amp; Hear:"
+                android:id="@+id/dareHearTxtHL"
+                android:textColor="#ffffff"
+                android:layout_marginTop="39dp"
+                android:layout_below="@+id/textView19"
+                android:layout_centerHorizontal="true"
+                android:clickable="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Student Grant:"
+                android:id="@+id/studentGrantTxtHL"
+                android:textColor="#ffffff"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:clickable="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Foreign Assistance:"
+                android:id="@+id/foreignAssistTxtHL"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/studentGrantTxtHL"
+                android:layout_alignEnd="@+id/textView18"
+                android:layout_marginTop="46dp"
+                android:clickable="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Susi Scheme"
+                android:id="@+id/susiTxtHL"
+                android:layout_below="@+id/foreignAssistTxtHL"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="41dp"
+                android:textColor="#ffffff"
+                android:clickable="true" />
 
         </RelativeLayout>
 
