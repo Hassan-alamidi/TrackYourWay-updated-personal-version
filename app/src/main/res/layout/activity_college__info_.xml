@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Name:"
-                android:id="@+id/EventName"
+                android:id="@+id/colNameLbl"
                 android:layout_below="@+id/collegeNameLabel"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="30dp"
@@ -73,30 +73,31 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Address:"
                 android:id="@+id/colAddressLbl"
-                android:layout_below="@+id/EventName"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="24dp"
                 android:background="#5a5a5a"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_below="@+id/colNameLbl"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Email:"
-                android:id="@+id/DateLbl"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
+                android:id="@+id/EmailLbl"
                 android:background="#5a5a5a"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_below="@+id/colAddressLbl"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="25dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Phone No:"
-                android:id="@+id/DetailsLbl"
-                android:layout_below="@+id/DateLbl"
+                android:id="@+id/PhoneNumLbl"
+                android:layout_below="@+id/EmailLbl"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="30dp"
                 android:background="#5a5a5a"
@@ -108,7 +109,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Course Type:"
                 android:id="@+id/colCourseTypeLbl"
-                android:layout_below="@+id/DetailsLbl"
+                android:layout_below="@+id/PhoneNumLbl"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="30dp"
                 android:background="#5a5a5a"
@@ -118,8 +119,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/textView27"
+                android:text="Description:"
+                android:id="@+id/courseDescLabel"
                 android:layout_below="@+id/colCourseTypeLbl"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="30dp"
@@ -132,17 +133,17 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/displayColNameTxt"
-                android:layout_alignBottom="@+id/EventName"
-                android:layout_centerHorizontal="true"
                 android:background="#5a5a5a"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_alignTop="@+id/colNameLbl"
+                android:layout_alignStart="@+id/displayColAddressTxt" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
-                android:id="@+id/displayEventAddressTxt"
+                android:id="@+id/displayColAddressTxt"
                 android:layout_alignBottom="@+id/colAddressLbl"
                 android:layout_alignStart="@+id/collegeNameLabel"
                 android:background="#5a5a5a"
@@ -153,9 +154,9 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
-                android:id="@+id/displayDateAndTimeTxt"
-                android:layout_alignBottom="@+id/DateLbl"
-                android:layout_alignStart="@+id/displayEventAddressTxt"
+                android:id="@+id/displayColEmailTxt"
+                android:layout_alignBottom="@+id/EmailLbl"
+                android:layout_alignStart="@+id/displayColAddressTxt"
                 android:background="#5a5a5a"
                 android:textColor="#ffffff" />
 
@@ -164,9 +165,9 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
-                android:id="@+id/EventDetailsTxt"
-                android:layout_alignBottom="@+id/DetailsLbl"
-                android:layout_alignStart="@+id/displayDateAndTimeTxt"
+                android:id="@+id/displayColNumTxt"
+                android:layout_alignBottom="@+id/PhoneNumLbl"
+                android:layout_alignStart="@+id/displayColEmailTxt"
                 android:background="#5a5a5a"
                 android:textColor="#ffffff" />
 
@@ -177,7 +178,7 @@
                 android:text="Medium Text"
                 android:id="@+id/displayColCoursesTxt"
                 android:layout_alignBottom="@+id/colCourseTypeLbl"
-                android:layout_alignStart="@+id/EventDetailsTxt"
+                android:layout_alignStart="@+id/displayColNumTxt"
                 android:background="#5a5a5a"
                 android:textColor="#ffffff" />
 
@@ -186,11 +187,34 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
-                android:id="@+id/textView33"
-                android:layout_alignBottom="@+id/textView27"
+                android:id="@+id/displayColCourseDescTxt"
+                android:layout_alignBottom="@+id/courseDescLabel"
                 android:layout_alignStart="@+id/displayColCoursesTxt"
                 android:background="#5a5a5a"
                 android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Duration"
+                android:id="@+id/courseDurLabel"
+                android:layout_below="@+id/courseDescLabel"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="24dp"
+                android:textColor="#ffffff"
+                android:background="#5a5a5a" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/displayColCourseDurTxt"
+                android:background="#5a5a5a"
+                android:textColor="#ffffff"
+                android:layout_alignTop="@+id/courseDurLabel"
+                android:layout_alignStart="@+id/displayColCourseDescTxt" />
 
 
         </RelativeLayout>

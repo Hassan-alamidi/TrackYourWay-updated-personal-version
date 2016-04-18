@@ -34,9 +34,9 @@ public class Events_Info_Activity extends AppCompatActivity implements Navigatio
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         EventName = (TextView) findViewById(R.id.displayEventNametxt);
-        EventAddress = (TextView) findViewById(R.id.displayEventAddressTxt);
-        EventTimeAndDate = (TextView) findViewById(R.id.displayDateAndTimeTxt);
-        EventDetails = (TextView) findViewById(R.id.EventDetailsTxt);
+        EventAddress = (TextView) findViewById(R.id.displayColAddressTxt);
+        EventTimeAndDate = (TextView) findViewById(R.id.displayColEmailTxt);
+        EventDetails = (TextView) findViewById(R.id.displayColNumTxt);
         backBtn = (Button) findViewById(R.id.calendarPage);
         mapsBtn = (Button) findViewById(R.id.GoToMaps);
         //hamburger icon to open navigation drawer
